@@ -1,3 +1,5 @@
+package offer13;
+
 import org.junit.Test;
 
 
@@ -6,9 +8,8 @@ import java.util.Queue;
 
 public class Solution {
     public int movingCount(int m, int n, int k) {
-        if (k == 0) {
+        if (k == 0)
             return 1;
-        }
         Queue<int[]> queue = new LinkedList<>();
         int[] dx = {0, 1};
         int[] dy = {1, 0};
@@ -17,13 +18,12 @@ public class Solution {
         vis[0][0] = true;
         int ans = 1;
         while (!queue.isEmpty()) {
-            int[] cell = queue.poll();
-            int x = cell[0], y = cell[1];
-            for (int i = 0; i < 2; ++i) {
-                int tx = dx[i] + x;
-                int ty = dy[i] + y;
-                if (tx < 0 || tx >= m || ty < 0 || ty >= n || vis[tx][ty]
-                        || get(tx) + get(ty) > k) {
+            int[] count = queue.poll();
+            int x = count[0], y = count[1];
+            for (int i = 0; i < 2; i++) {
+                int tx = dx[i]+x, ty = dy[i]+y;
+                if (tx<0 || tx >= m || ty<0 || ty >= n || vis[tx][ty]
+                    || get(tx)+get(ty) > k) {
                     continue;
                 }
                 queue.offer(new int[]{tx, ty});
@@ -45,6 +45,6 @@ public class Solution {
 
     @Test
     public void test() {
-        System.out.println(movingCount(2, 3 ,1));
+        System.out.println(movingCount(1, 2 ,1));
     }
 }
